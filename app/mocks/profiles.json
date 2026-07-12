@@ -1,0 +1,183 @@
+[
+  {
+    "id": "c1111111-1111-4444-8888-000000000001",
+    "email": "ivan.horvat@gmail.com",
+    "role": "client",
+    "fcm_token": "fcm_c_01",
+    "is_active": false,
+    "last_seen_at": "2026-05-03T10:00:00Z",
+    "created_at": "2026-05-01T08:00:00Z"
+  },
+  {
+    "id": "c2222222-2222-4444-8888-000000000002",
+    "email": "marija.baric@outlook.com",
+    "role": "client",
+    "fcm_token": "fcm_c_02",
+    "is_active": true,
+    "last_seen_at": "2026-05-03T11:15:00Z",
+    "created_at": "2026-05-01T09:30:00Z"
+  },
+  {
+    "id": "c3333333-3333-4444-8888-000000000003",
+    "email": "stjepan.radic@net.hr",
+    "role": "client",
+    "fcm_token": "fcm_c_03",
+    "is_active": true,
+    "last_seen_at": "2026-05-02T18:00:00Z",
+    "created_at": "2026-05-02T10:00:00Z"
+  },
+  {
+    "id": "c4444444-4444-4444-8888-000000000004",
+    "email": "ana.kovacic@yahoo.com",
+    "role": "client",
+    "fcm_token": "fcm_c_04",
+    "is_active": true,
+    "last_seen_at": "2026-05-03T09:45:00Z",
+    "created_at": "2026-05-02T11:15:00Z"
+  },
+  {
+    "id": "c5555555-5555-4444-8888-000000000005",
+    "email": "luka.m@gmail.com",
+    "role": "client",
+    "fcm_token": "fcm_c_05",
+    "is_active": true,
+    "last_seen_at": "2026-05-03T07:30:00Z",
+    "created_at": "2026-05-02T14:20:00Z"
+  },
+  {
+    "id": "c6666666-6666-4444-8888-000000000006",
+    "email": "petra.v@gmail.com",
+    "role": "client",
+    "fcm_token": "fcm_c_06",
+    "is_active": true,
+    "last_seen_at": "2026-05-03T11:50:00Z",
+    "created_at": "2026-05-02T16:00:00Z"
+  },
+  {
+    "id": "c7777777-7777-4444-8888-000000000007",
+    "email": "marko.j@email.hr",
+    "role": "client",
+    "fcm_token": "fcm_c_07",
+    "is_active": true,
+    "last_seen_at": "2026-05-03T10:20:00Z",
+    "created_at": "2026-05-02T18:45:00Z"
+  },
+  {
+    "id": "c8888888-8888-4444-8888-000000000008",
+    "email": "ivana.b@skola.hr",
+    "role": "client",
+    "fcm_token": "fcm_c_08",
+    "is_active": true,
+    "last_seen_at": "2026-05-03T11:00:00Z",
+    "created_at": "2026-05-03T08:15:00Z"
+  },
+  {
+    "id": "c9999999-9999-4444-8888-000000000009",
+    "email": "darko.r@glazba.hr",
+    "role": "client",
+    "fcm_token": "fcm_c_09",
+    "is_active": true,
+    "last_seen_at": "2026-05-03T11:40:00Z",
+    "created_at": "2026-05-03T09:30:00Z"
+  },
+  {
+    "id": "c0000000-0000-4444-8888-000000000010",
+    "email": "sanja.d@tv.hr",
+    "role": "client",
+    "fcm_token": "fcm_c_10",
+    "is_active": true,
+    "last_seen_at": "2026-05-03T11:52:00Z",
+    "created_at": "2026-05-03T10:00:00Z"
+  },
+
+  {
+    "id": "d1111111-1111-4444-9999-000000000001",
+    "email": "info@blistavo.hr",
+    "role": "cleaner",
+    "fcm_token": "fcm_d_01",
+    "is_active": false,
+    "last_seen_at": "2026-05-03T11:50:00Z",
+    "created_at": "2026-05-01T08:30:00Z"
+  },
+  {
+    "id": "d2222222-2222-4444-9999-000000000002",
+    "email": "servis.ana@email.hr",
+    "role": "cleaner",
+    "fcm_token": "fcm_d_02",
+    "is_active": true,
+    "last_seen_at": "2026-05-03T11:45:00Z",
+    "created_at": "2026-05-01T10:00:00Z"
+  },
+  {
+    "id": "d3333333-3333-4444-9999-000000000003",
+    "email": "ecoclean@rijeka.hr",
+    "role": "cleaner",
+    "fcm_token": "fcm_d_03",
+    "is_active": true,
+    "last_seen_at": "2026-05-03T09:00:00Z",
+    "created_at": "2026-05-01T11:30:00Z"
+  },
+  {
+    "id": "d4444444-4444-4444-9999-000000000004",
+    "email": "uredi@osijek.hr",
+    "role": "cleaner",
+    "fcm_token": "fcm_d_04",
+    "is_active": true,
+    "last_seen_at": "2026-05-03T11:30:00Z",
+    "created_at": "2026-05-01T14:00:00Z"
+  },
+  {
+    "id": "d5555555-5555-4444-9999-000000000005",
+    "email": "zadar@shine.hr",
+    "role": "cleaner",
+    "fcm_token": "fcm_d_05",
+    "is_active": true,
+    "last_seen_at": "2026-05-03T08:00:00Z",
+    "created_at": "2026-05-02T08:00:00Z"
+  },
+  {
+    "id": "d6666666-6666-4444-9999-000000000006",
+    "email": "pula@ciscenje.hr",
+    "role": "cleaner",
+    "fcm_token": "fcm_d_06",
+    "is_active": true,
+    "last_seen_at": "2026-05-03T11:10:00Z",
+    "created_at": "2026-05-02T09:45:00Z"
+  },
+  {
+    "id": "d7777777-7777-4444-9999-000000000007",
+    "email": "varazdin@vrt.hr",
+    "role": "cleaner",
+    "fcm_token": "fcm_d_07",
+    "is_active": true,
+    "last_seen_at": "2026-05-03T10:00:00Z",
+    "created_at": "2026-05-02T12:00:00Z"
+  },
+  {
+    "id": "d8888888-8888-4444-9999-000000000008",
+    "email": "karlovac@stube.hr",
+    "role": "cleaner",
+    "fcm_token": "fcm_d_08",
+    "is_active": true,
+    "last_seen_at": "2026-05-03T11:40:00Z",
+    "created_at": "2026-05-02T15:30:00Z"
+  },
+  {
+    "id": "d9999999-9999-4444-9999-000000000009",
+    "email": "slavonija@dezinfekcija.hr",
+    "role": "cleaner",
+    "fcm_token": "fcm_d_09",
+    "is_active": true,
+    "last_seen_at": "2026-05-03T09:20:00Z",
+    "created_at": "2026-05-03T08:00:00Z"
+  },
+  {
+    "id": "d0000000-0000-4444-9999-000000000010",
+    "email": "sibenik@more.hr",
+    "role": "cleaner",
+    "fcm_token": "fcm_d_10",
+    "is_active": true,
+    "last_seen_at": "2026-05-03T11:52:00Z",
+    "created_at": "2026-05-03T10:30:00Z"
+  }
+]
