@@ -1,0 +1,119 @@
+[
+  {
+    "profile_id": "d2222222-2222-4444-9999-000000000002",
+    "company_name": "Servis za čišćenje Adria",
+    "oib": "98765432101",
+    "billing_address": {
+      "street": "Vukovarska 45",
+      "city": "Split",
+      "zip": "21000"
+    },
+    "max_radius_km": 50,
+    "subscription_plan": "monthly_paid",
+    "subscription_ends_at": "2026-06-03T12:00:00Z"
+  },
+  {
+    "profile_id": "d3333333-3333-4444-9999-000000000003",
+    "company_name": "Eco-Clean Rijeka",
+    "oib": "11223344556",
+    "billing_address": {
+      "street": "Korzo 5",
+      "city": "Rijeka",
+      "zip": "51000"
+    },
+    "max_radius_km": 25,
+    "subscription_plan": "yearly_paid",
+    "subscription_ends_at": "2027-05-01T12:00:00Z"
+  },
+  {
+    "profile_id": "d4444444-4444-4444-9999-000000000004",
+    "company_name": "Sjaj d.o.o. Osijek",
+    "oib": "55667788990",
+    "billing_address": {
+      "street": "Europska avenija 2",
+      "city": "Osijek",
+      "zip": "31000"
+    },
+    "max_radius_km": 40,
+    "subscription_plan": "gratis_3m",
+    "subscription_ends_at": "2026-08-01T12:00:00Z"
+  },
+  {
+    "profile_id": "d5555555-5555-4444-9999-000000000005",
+    "company_name": "Zadar Shine Services",
+    "oib": "22334455667",
+    "billing_address": {
+      "street": "Kalelarga 8",
+      "city": "Zadar",
+      "zip": "23000"
+    },
+    "max_radius_km": 60,
+    "subscription_plan": "monthly_paid",
+    "subscription_ends_at": "2026-05-20T12:00:00Z"
+  },
+  {
+    "profile_id": "d6666666-6666-4444-9999-000000000006",
+    "company_name": "Pula Pro-Cleaning",
+    "oib": "77889900112",
+    "billing_address": {
+      "street": "Giardini 3",
+      "city": "Pula",
+      "zip": "52100"
+    },
+    "max_radius_km": 20,
+    "subscription_plan": "gratis_3m",
+    "subscription_ends_at": "2026-08-10T12:00:00Z"
+  },
+  {
+    "profile_id": "d7777777-7777-4444-9999-000000000007",
+    "company_name": "Varaždin Green Usluge",
+    "oib": "33445566778",
+    "billing_address": {
+      "street": "Trg kralja Tomislava 1",
+      "city": "Varaždin",
+      "zip": "42000"
+    },
+    "max_radius_km": 35,
+    "subscription_plan": "yearly_paid",
+    "subscription_ends_at": "2027-04-15T12:00:00Z"
+  },
+  {
+    "profile_id": "d8888888-8888-4444-9999-000000000008",
+    "company_name": "Stambeni Servis Karlovac",
+    "oib": "99001122334",
+    "billing_address": {
+      "street": "Radićeva 12",
+      "city": "Karlovac",
+      "zip": "47000"
+    },
+    "max_radius_km": 15,
+    "subscription_plan": "gratis_3m",
+    "subscription_ends_at": "2026-08-05T12:00:00Z"
+  },
+  {
+    "profile_id": "d9999999-9999-4444-9999-000000000009",
+    "company_name": "Dezinfekcija Slavonija",
+    "oib": "44556677889",
+    "billing_address": {
+      "street": "Osječka 101",
+      "city": "Slavonski Brod",
+      "zip": "35000"
+    },
+    "max_radius_km": 100,
+    "subscription_plan": "monthly_paid",
+    "subscription_ends_at": "2026-05-15T12:00:00Z"
+  },
+  {
+    "profile_id": "d0000000-0000-4444-9999-000000000010",
+    "company_name": "More & Sjaj Šibenik",
+    "oib": "66778899001",
+    "billing_address": {
+      "street": "Obala palih omladinaca 2",
+      "city": "Šibenik",
+      "zip": "22000"
+    },
+    "max_radius_km": 45,
+    "subscription_plan": "gratis_3m",
+    "subscription_ends_at": "2026-08-15T12:00:00Z"
+  }
+]
