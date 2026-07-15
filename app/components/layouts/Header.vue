@@ -1,7 +1,6 @@
 <template>
   <header class="site-header">
     <div class="header-container">
-      <!-- Lijeva strana: Izbornik i Logo -->
       <div class="header-left">
         <svg
           xmlns="http://w3.org"
@@ -18,8 +17,10 @@
           <span class="logo-text">Portal</span>
         </NuxtLink>
       </div>
-
-      <!-- Desna strana: Prijava i Avatar -->
+      <UiInput
+        placeholder="Unesite svoj email za prijavu na newsletter"
+        name="newsletter-email"
+        label="Newsletter" />
       <div class="header-right">
         <NuxtLink to="/" class="login-button">
           <svg
