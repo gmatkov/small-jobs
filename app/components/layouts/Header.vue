@@ -1,7 +1,14 @@
+<script lang="ts" setup>
+const authStore = useAuthStore();
+const { isAuthenticated, user } = storeToRefs(authStore);
+const handleClick = () => {
+  authStore.logout();
+};
+</script>
+
 <template>
   <header class="site-header">
     <div class="header-container">
-      <!-- Lijeva strana: Izbornik i Logo -->
       <div class="header-left">
         <svg
           xmlns="http://w3.org"
@@ -19,9 +26,8 @@
         </NuxtLink>
       </div>
 
-      <!-- Desna strana: Prijava i Avatar -->
       <div class="header-right">
-        <NuxtLink to="/" class="login-button">
+        <NuxtLink v-if="!isAuthenticated" to="/login" class="login-button">
           <svg
             xmlns="http://w3.org"
             height="20px"
@@ -33,7 +39,20 @@
           </svg>
           <span>Prijava</span>
         </NuxtLink>
+        <div v-else @click="handleClick" class="login-button">
+          <svg
+            xmlns="http://w3.org"
+            height="20px"
+            viewBox="0 -960 960 960"
+            width="20px"
+            fill="#94a3b8">
+            <path
+              d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" />
+          </svg>
+          <span>Odjava</span>
+        </div>
 
+        <span>{{ user?.email }}</span>
         <div class="avatar-container">
           <img alt="User profile photo" class="avatar-img" src="/avatar.avif" />
         </div>
@@ -117,6 +136,7 @@
   transition:
     background-color 0.2s,
     transform 0.1s;
+  cursor: pointer;
 }
 
 .login-button:hover {

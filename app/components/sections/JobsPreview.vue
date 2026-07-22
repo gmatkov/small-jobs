@@ -1,5 +1,7 @@
 <script setup lang="ts">
 const { data: jobs } = await useFetch('/api/jobs');
+
+const jobsData = computed(() => jobs.value?.slice(0, 3));
 </script>
 
 <template>
@@ -13,7 +15,7 @@ const { data: jobs } = await useFetch('/api/jobs');
     </div>
 
     <div class="jobs-grid">
-      <CardsJobCard v-for="job in jobs" :key="job.id" :job="job" />
+      <CardsJobCard v-for="job in jobsData" :key="job.id" :job="job" />
     </div>
   </section>
 </template>
