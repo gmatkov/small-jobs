@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useField } from 'vee-validate';
+const model = defineModel<string>();
 
 const {
   name,
@@ -13,26 +14,33 @@ const {
   type?: string;
   placeholder?: string;
   disabled?: boolean;
+  error?: string;
 }>();
 
-const { value, errorMessage, handleChange, handleBlur } = useField(() => name);
+const { value, errorMessage, handleChange, handleBlur } = useField<string>(
+  () => name,
+);
 </script>
 
 <template>
-  <div class="input-wrapper">
-    <label v-if="label" :for="name" class="input-label">{{ label }}</label>
+  <div class="input-container">
+    <label v-if="label" :for="name" class="input-label">
+      {{ label }}
+    </label>
 
     <input
+      v-model="model"
       :id="name"
       :type="type"
-      :value="value"
       :placeholder="placeholder"
       :disabled="disabled"
-      :class="['input-element', { 'is-invalid': errorMessage }]"
+      :class="['input-field', { 'is-invalid': errorMessage }]"
       @input="handleChange"
       @blur="handleBlur" />
 
-    <span v-if="errorMessage" class="error-text">{{ errorMessage }}</span>
+    <span v-if="error" class="error-text">
+      {{ error }}
+    </span>
   </div>
 </template>
 
@@ -43,14 +51,14 @@ const { value, errorMessage, handleChange, handleBlur } = useField(() => name);
   gap: 8px;
   width: 100%;
   box-sizing: border-box;
+  margin-bottom: 16px;
 }
 
 .input-label {
   font-family: 'Manrope', sans-serif;
   font-size: 14px;
   line-height: 1.2;
-  letter-spacing: 0.05em;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--secondary);
   display: block;
 }
@@ -73,10 +81,21 @@ const { value, errorMessage, handleChange, handleBlur } = useField(() => name);
   box-sizing: border-box;
 }
 
+.input-field::placeholder {
+  color: #a1a1a1;
+}
+
 .input-field:focus {
   outline: none;
   border-color: var(--primary);
   box-shadow: 0 0 0 4px rgba(77, 182, 172, 0.1);
+}
+
+.input-field:disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  background-color: rgba(226, 232, 240, 0.5);
+  opacity: 0.5;
 }
 
 .input-field.is-invalid {

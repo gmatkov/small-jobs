@@ -15,9 +15,9 @@
             </p>
             <div class="hero-actions">
               <button class="btn btn-primary">Postani Čistač</button>
-              <!-- <NuxtLink to="/post-a-job" class="btn-link">
+              <NuxtLink to="/jobs/create" class="btn-link">
                 <button class="btn btn-secondary">Treba mi Čišćenje</button>
-              </NuxtLink> -->
+              </NuxtLink>
             </div>
           </div>
         </div>
