@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useField } from 'vee-validate';
 const model = defineModel<string>();
 
 const {
@@ -16,10 +15,6 @@ const {
   disabled?: boolean;
   error?: string;
 }>();
-
-const { value, errorMessage, handleChange, handleBlur } = useField<string>(
-  () => name,
-);
 </script>
 
 <template>
@@ -34,9 +29,7 @@ const { value, errorMessage, handleChange, handleBlur } = useField<string>(
       :type="type"
       :placeholder="placeholder"
       :disabled="disabled"
-      :class="['input-field', { 'is-invalid': errorMessage }]"
-      @input="handleChange"
-      @blur="handleBlur" />
+      class="input-field" />
 
     <span v-if="error" class="error-text">
       {{ error }}
