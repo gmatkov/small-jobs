@@ -30,6 +30,10 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
+  async function register(user: User) {
+    
+  }
+
   return {
     user,
     isAuthenticated,
