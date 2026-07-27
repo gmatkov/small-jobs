@@ -4,6 +4,9 @@ create table public.private_profiles (
     oib text not null
         check (oib ~ '^[0-9]{11}$'),
 
+    address text not null
+        check (length(trim(address)) between 5 and 200),
+
     created_at timestamptz not null default now(),
     updated_at timestamptz not null default now()
 );
