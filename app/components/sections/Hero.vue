@@ -2,23 +2,42 @@
   <section class="hero-section">
     <div class="hero-container">
       <div class="hero-grid">
-        <div class="grid-full-width">
-          <UiPromoBadge />
+        <div class="hero-visual">
+          <figure class="image-wrapper">
+            <img
+              alt="Hero image of a person cleaning a house"
+              class="hero-img"
+              width="413"
+              height="300"
+              src="/hero/hero-left.avif" />
+          </figure>
         </div>
-
         <div class="hero-content">
           <div class="content-inner">
-            <h1 class="hero-title">Povežite se s čistačima direktno</h1>
-            <p class="hero-text">
-              Bez provizije. Bez posrednika u plaćanju. Klijentima je korištenje
-              uvijek besplatno.
-            </p>
+            <h1 class="hero-title">
+              <span class="text-green">Mali Poslovi.</span> Velike usluge.
+            </h1>
+            <div class="hero-text">
+              Oglasi besplatno.
+              <span class="text-green">&nbsp;Dogovori izravno.</span>
+              <div>
+                Bez <span class="text-green">posrednika</span> i provizije.
+              </div>
+            </div>
             <div class="hero-actions">
-              <NuxtLink to="/auth/registration" class="btn btn-primary"
-                >Postani Čistač</NuxtLink
+              <NuxtLink to="/jobs/create" class="btn btn-primary"
+                >Objavi oglas</NuxtLink
               >
-              <NuxtLink to="/jobs/create" class="btn-link">
-                <button class="btn btn-secondary">Treba mi Čišćenje</button>
+            </div>
+            <div class="hero-text">
+              Registiraj obrt. Nađi lokalni oglas.
+              <div>Prva 3 mjeseca besplatno</div>
+
+              <div></div>
+            </div>
+            <div class="hero-actions">
+              <NuxtLink to="/auth/registration" class="btn btn-link">
+                Postani izvođač
               </NuxtLink>
             </div>
           </div>
@@ -31,9 +50,12 @@
               class="hero-img"
               width="413"
               height="300"
-              src="/12_converted.avif" />
+              src="/hero/hero-right.avif" />
           </figure>
         </div>
+        <!-- <div class="grid-full-width">
+          <UiPromoBadge />
+        </div> -->
       </div>
     </div>
   </section>
@@ -85,8 +107,8 @@
   font-size: 1.125rem;
   color: #475569;
   max-width: 448px;
-  margin-top: 0;
   margin-bottom: 40px;
+  font-weight: 700;
   line-height: 1.5;
 }
 
@@ -99,8 +121,10 @@
 }
 
 .btn-link {
-  text-decoration: none;
-  width: 100%;
+  background-color: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  box-shadow: 0 10px 15px -3px rgba(13, 148, 137, 0.2);
 }
 
 .btn {
@@ -112,6 +136,10 @@
   cursor: pointer;
   transition: all 0.2s;
   box-sizing: border-box;
+  text-decoration: none;
+  &:hover {
+    transform: scale(1.02);
+  }
 }
 
 .btn-primary {
@@ -141,15 +169,14 @@
 
 @media (min-width: 1024px) {
   .hero-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-items: center;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    /* align-items: center; */
     gap: 40px;
   }
 
   .content-inner {
-    align-items: flex-start;
-    text-align: left;
-    padding: 80px 0;
+    text-align: center;
+    padding: 0;
   }
 
   .hero-actions {
@@ -157,14 +184,11 @@
     max-width: none;
   }
 
-  .btn {
-    width: auto;
-  }
-
   .hero-visual {
     display: flex;
     justify-content: flex-end;
     width: 100%;
+    opacity: 0.4;
   }
 
   .image-wrapper {
@@ -179,6 +203,13 @@
     border-radius: 8px;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     object-fit: cover;
+  }
+  .hero-title {
+    font-size: 48px;
+    margin: 0 -144px;
+    background-color: #f9f9f9;
+    z-index: 1;
+    padding: 24px 24px;
   }
 }
 </style>

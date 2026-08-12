@@ -1,4 +1,9 @@
-import type { LoginResponse, LogoutResponse } from '~/types/auth';
+import type {
+  LoginResponse,
+  LogoutResponse,
+  RegisterPayload,
+  RegisterResponse,
+} from '~/types/auth';
 
 export const authServices = {
   async login(email: string, password: string): Promise<LoginResponse> {
@@ -13,6 +18,15 @@ export const authServices = {
   },
 
   async logout(): Promise<LogoutResponse> {
-    return await $fetch<LogoutResponse>('/api/auth/logout');
+    return await $fetch<LogoutResponse>('/api/auth/logout', {
+      method: 'POST',
+    });
+  },
+
+  async register(payload: RegisterPayload): Promise<RegisterResponse> {
+    return await $fetch<RegisterResponse>('/api/auth/register', {
+      method: 'POST',
+      body: payload,
+    });
   },
 };

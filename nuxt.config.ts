@@ -15,5 +15,21 @@ export default defineNuxtConfig({
   },
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['@pinia/nuxt'],
+  modules: ['@pinia/nuxt', '@nuxtjs/supabase'],
+  vite: {
+    optimizeDeps: {
+      include: ['vee-validate', '@vee-validate/zod', 'zod'],
+    },
+  },
+  supabase: {
+    redirect: false,
+    useSsrCookies: true,
+
+    // 3. Eksplicitno zabranjujemo klijentu spremanje sesije na frontendu
+    clientOptions: {
+      auth: {
+        persistSession: false,
+      },
+    },
+  },
 });
