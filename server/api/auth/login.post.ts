@@ -1,47 +1,47 @@
-import type { User } from '~/types/user';
+import { createServerClient } from '@supabase/ssr';
 
 export default defineEventHandler(async (event) => {
+  const config = useRuntimeConfig();
+
+  const supabase = createServerClient(
+    config.public.supabase.url,
+    config.public.supabase.key,
+    {
+      cookies: {
+        getAll() {
+          const cookies = parseCookies(event);
+
+          return Object.entries(cookies).map(([name, value]) => ({
+            name,
+            value,
+          }));
+        },
+
+        setAll(cookies) {
+          cookies.forEach(({ name, value, options }) => {
+            setCookie(event, name, value, options);
+          });
+        },
+      },
+    },
+  );
+
   const body = await readBody(event);
   const { email, password } = body;
 
-  //TODO find user in DB
-  const users = <User[]>[
-    {
-      id: '1',
-      name: 'Pero',
-      email: 'pero@g.com',
-      password: '123456',
-      role: 'client',
-    },
-  ];
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
 
-  const user = users.find((u) => u.email === email);
-  console.log(body);
-  if (!user) {
-    throw createError({
-      statusCode: 404,
-      statusMessage: 'User not found!',
-    });
-  }
-
-  //TODO: verify password
-  if (user.password !== password) {
+  if (error) {
     throw createError({
       statusCode: 401,
-      statusMessage: 'Password does not match!',
+      statusMessage: error.message,
     });
   }
 
-  //TODO: create session/token
-
-  //TODO: save in HttpOnly cookie
-
   return {
-    user: {
-      id: user?.id,
-      email: user?.email,
-      name: user?.name,
-      role: user?.role,
-    },
+    user: data.user,
   };
 });

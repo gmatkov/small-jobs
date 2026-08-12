@@ -1,11 +1,13 @@
 import { defineStore } from 'pinia';
 import { authServices } from '~/services/authServices';
+import type { RegisterPayload } from '~/types/auth';
 import type { User } from '~/types/user';
 
 export const useAuthStore = defineStore('auth', () => {
   const user = ref<User | null>(null);
   const isAuthenticated = computed(() => user.value !== null);
   const isLoading = ref(false);
+  const error = ref<string | null>(null);
 
   async function login(email: string, password: string) {
     isLoading.value = true;
@@ -13,7 +15,6 @@ export const useAuthStore = defineStore('auth', () => {
     try {
       const response = await authServices.login(email, password);
       user.value = response.user;
-      console.log(user.value);
     } finally {
       isLoading.value = false;
     }
@@ -30,8 +31,17 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  async function register(user: User) {
-    
+  async function register(payload: RegisterPayload) {
+    isLoading.value = true;
+    try {
+      const response = await authServices.register(payload);
+      user.value = response.user;
+      navigateTo('/dashboard');
+    } catch (err: any) {
+      error.value = err?.statusMessage || err?.message || 'Registration failed';
+    } finally {
+      isLoading.value = false;
+    }
   }
 
   return {
@@ -40,5 +50,7 @@ export const useAuthStore = defineStore('auth', () => {
     isLoading,
     login,
     logout,
+    register,
+    error,
   };
 });

@@ -12,3 +12,17 @@ export type LogoutResponse = {
 export type CurrentUserResponse = {
   user: User | null;
 };
+
+export type RegisterResponse = {
+  user: User;
+};
+
+export type RegisterPayload = {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  city: string;
+  postalCode: string;
+};
