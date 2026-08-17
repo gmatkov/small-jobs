@@ -12,7 +12,6 @@
   "dependencies": {
     "@nuxtjs/supabase": "^2.0.9",
     "@pinia/nuxt": "^1.0.1",
-    "@supabase/ssr": "^0.12.4",
     "@supabase/supabase-js": "^2.111.0",
     "@vee-validate/zod": "^4.15.1",
     "nuxt": "^4.4.8",
@@ -21,5 +20,8 @@
     "vue": "^3.5.39",
     "vue-router": "^5.1.0",
     "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.2.0"
   }
 }

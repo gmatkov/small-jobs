@@ -20,7 +20,7 @@ export const authServices = {
   async logout(): Promise<LogoutResponse> {
     return await $fetch<LogoutResponse>('/api/auth/logout', {
       method: 'POST',
-    });
+    }); 
   },
 
   async register(payload: RegisterPayload): Promise<RegisterResponse> {

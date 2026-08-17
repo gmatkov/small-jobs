@@ -21,6 +21,13 @@ export default defineNuxtConfig({
       include: ['vee-validate', '@vee-validate/zod', 'zod'],
     },
   },
+  runtimeConfig: {
+    supabaseSecretKey: process.env.NUXT_SUPABASE_SECRET_KEY,
+    public: {
+      supabaseUrl: process.env.NUXT_PUBLIC_SUPABASE_URL,
+      supabasePublishableKey: process.env.NUXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
+    },
+  },
   supabase: {
     redirect: false,
     useSsrCookies: true,
@@ -28,8 +35,12 @@ export default defineNuxtConfig({
     // 3. Eksplicitno zabranjujemo klijentu spremanje sesije na frontendu
     clientOptions: {
       auth: {
-        persistSession: false,
+        persistSession: true,
       },
+    },
+    cookieOptions: {
+      sameSite: 'lax',
+      secure: !import.meta.dev, // Zamjena za process.env koja NEĆE baciti grešku
     },
   },
 });

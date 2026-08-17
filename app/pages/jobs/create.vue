@@ -1,55 +1,110 @@
 <script setup lang="ts">
-const contactMethod = ref('portal');
+definePageMeta({
+  middleware: ['authenticated'],
+  authReason: 'create_ad',
+});
+import { useForm } from 'vee-validate';
+import { toTypedSchema } from '@vee-validate/zod';
+import { z } from 'zod';
+import { adService } from '~/services/adServices';
+import { categoriesService } from '~/services/categoriesService';
 
-const onSubmit = (event: Event) => {
-  event.preventDefault();
+const schema = toTypedSchema(
+  z.object({
+    title: z.string().min(3, 'Minimalno 3 znaka'),
+    description: z.string().min(3, 'Minimalno 3 znaka'),
+    category: z.string().min(1, { message: 'Ovo polje je obavezno.' }),
+    postalCode: z.string().min(5, 'Minimalno 5 brojeva'),
+    city: z.string().min(3, 'Minimalno 3 znaka'),
+  }),
+);
 
-  const target = event.target as HTMLFormElement;
-  const formData = new FormData(target);
-  const formValues = Object.fromEntries(formData.entries());
+const { defineField, errors, handleSubmit, meta } = useForm({
+  validationSchema: schema,
+  initialValues: {
+    title: '',
+    description: '',
+    category: '',
+    postalCode: '',
+    city: '',
+  },
+});
 
-  console.log('Nativni podaci oglasa spremni za obradu:', formValues);
-};
+const [title] = defineField('title');
+const [description] = defineField('description');
+const [category] = defineField('category');
+const [postalCode] = defineField('postalCode');
+const [city] = defineField('city');
+
+const contactMethod = ref('message');
+
+const { data } = await useAsyncData(
+  'categories',
+  () => categoriesService.getCategories(),
+  { server: false },
+);
+
+const categoryOptions = computed(() => {
+  const categories = data.value?.categories ?? [];
+
+  return categories.map((category) => ({
+    value: category.id,
+    label: category.name,
+  }));
+});
+
+const onSubmit = handleSubmit(async (values) => {
+  const result = await adService.createAd({
+    ...values,
+    contactMethod: contactMethod.value,
+  });
+});
 </script>
 
 <template>
   <div class="page-wrapper">
-    <div class="top-app-bar">
-      <div class="header-container">
-        <button type="button" class="back-btn" @click="$router.back()">
-          <span class="material-symbols-outlined">arrow_back</span>
-        </button>
-        <h1 class="header-title">Post a Job</h1>
-      </div>
-    </div>
-
     <main class="main-content">
+      <h2>Postavi oglas</h2>
       <form class="job-form" @submit="onSubmit">
         <section class="form-section">
           <UiInput
+            v-model="title"
             name="title"
             label="Naslov oglasa"
-            placeholder="npr. Čišćenje stana 50m2" />
+            placeholder="npr. Čišćenje stana 50m2"
+            :error="errors.title" />
 
           <UiTextarea
+            v-model="description"
             name="description"
             label="Opis posla"
             placeholder="Detaljno opišite što vam je potrebno..."
-            rows="5" />
+            rows="5"
+            :error="errors.description" />
+
+          <UiSelect
+            v-model="category"
+            id="category"
+            name="category"
+            label="Kategorija"
+            :options="categoryOptions"
+            defaultOption="Odaberi kategoriju" />
         </section>
 
         <section class="grid-section">
-          <div class="relative-input">
-            <UiInput name="city" label="Grad" placeholder="Zagreb" />
-            <span class="material-symbols-outlined input-icon"
-              >location_on</span
-            >
-          </div>
+          <UiInput
+            v-model="postalCode"
+            name="postalCode"
+            label="Poštanski broj"
+            placeholder="10000"
+            :error="errors.postalCode" />
 
           <UiInput
-            name="district"
-            label="Kvart/Naselje"
-            placeholder="Trešnjevka" />
+            v-model="city"
+            name="city"
+            label="Grad"
+            placeholder="Zagreb"
+            :error="errors.city" />
         </section>
 
         <section class="form-section">
@@ -61,7 +116,7 @@ const onSubmit = (event: Event) => {
             <UiRadioButton
               v-model="contactMethod"
               name="contactPreference"
-              value="portal"
+              value="message"
               title="Preko Portala"
               description="Komunicirajte sigurno unutar aplikacije bez dijeljenja broja." />
 
@@ -82,7 +137,9 @@ const onSubmit = (event: Event) => {
         </section>
 
         <div class="form-actions">
-          <UiButton type="submit">Objavi oglas</UiButton>
+          <UiButton type="submit" :disabled="!meta.valid"
+            >Objavi oglas</UiButton
+          >
         </div>
       </form>
     </main>
@@ -94,22 +151,6 @@ const onSubmit = (event: Event) => {
   width: 100%;
   min-height: 100vh;
   background-color: var(--background);
-  box-sizing: border-box;
-}
-
-.top-app-bar {
-  /* position: fixed; */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 64px;
-  z-index: 50;
-  background-color: #ffffff;
-  border-bottom: 1px solid var(--outline-variant);
-  box-shadow: 0 4px 12px rgba(77, 182, 172, 0.04);
-  display: flex;
-  align-items: center;
-  padding: 0 16px;
   box-sizing: border-box;
 }
 
@@ -145,7 +186,7 @@ const onSubmit = (event: Event) => {
 }
 
 .main-content {
-  padding-top: 96px;
+  padding-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 128px;
@@ -171,11 +212,6 @@ const onSubmit = (event: Event) => {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
 }
-
-.relative-input {
-  position: relative;
-}
-
 .input-icon {
   position: absolute;
   right: 12px;

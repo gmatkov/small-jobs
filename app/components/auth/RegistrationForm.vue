@@ -44,6 +44,7 @@ const onSubmit = handleSubmit(async (values) => {
     phone: '+38598890553',
     city: values.city,
     postalCode: values.postalCode,
+    userType: 'client'
   };
   try {
     await authStore.register(payload);

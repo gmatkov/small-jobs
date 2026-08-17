@@ -19,10 +19,15 @@ const [password] = defineField('password');
 
 const authStore = useAuthStore();
 
+const { message, redirect } = defineProps<{
+  message?: string | null;
+  redirect?: string;
+}>();
+
 const onSubmit = handleSubmit(async (values) => {
   try {
     await authStore.login(values.email, values.password);
-    navigateTo('/');
+    navigateTo(redirect);
   } catch (error) {
     console.log('Login Failed', error);
   }
@@ -33,6 +38,7 @@ const { user } = storeToRefs(authStore);
 
 <template>
   <div>
+    <p>{{ message }}</p>
     <h2>Login</h2>
     <form @submit="onSubmit">
       <UiInput

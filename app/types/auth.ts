@@ -25,4 +25,5 @@ export type RegisterPayload = {
   phone: string;
   city: string;
   postalCode: string;
+  userType: 'client' | 'provider';
 };

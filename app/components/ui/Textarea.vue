@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { useField } from 'vee-validate';
+// import { useField } from 'vee-validate';
+const model = defineModel<string>();
 
 const {
   name,
@@ -11,11 +12,8 @@ const {
   label?: string;
   placeholder?: string;
   rows?: number | string;
+  error?: string;
 }>();
-
-const { value, errorMessage, handleChange, handleBlur } = useField<string>(
-  () => name,
-);
 </script>
 
 <template>
@@ -25,16 +23,14 @@ const { value, errorMessage, handleChange, handleBlur } = useField<string>(
     </label>
 
     <textarea
+      v-model="model"
       :id="name"
-      v-model="value"
       :placeholder="placeholder"
       :rows="rows"
-      :class="['textarea-field', { 'is-invalid': errorMessage }]"
-      @input="handleChange"
-      @blur="handleBlur"></textarea>
+      :class="['textarea-field', { 'is-invalid': error }]" />
 
-    <span v-if="errorMessage" class="error-text">
-      {{ errorMessage }}
+    <span v-if="error" class="error-text">
+      {{ error }}
     </span>
   </div>
 </template>
@@ -53,7 +49,6 @@ const { value, errorMessage, handleChange, handleBlur } = useField<string>(
   font-size: 14px;
   line-height: 1.2;
   letter-spacing: 0.05em;
-  font-weight: 600;
   color: var(--secondary);
   display: block;
 }
@@ -74,6 +69,10 @@ const { value, errorMessage, handleChange, handleBlur } = useField<string>(
     box-shadow 0.2s;
   box-sizing: border-box;
   resize: none;
+}
+
+.textarea-field::placeholder {
+  color: #a1a1a1;
 }
 
 .textarea-field:focus {

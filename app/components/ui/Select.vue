@@ -1,35 +1,52 @@
 <script setup lang="ts">
+interface SelectOption {
+  value: string;
+  label: string;
+}
+
 const model = defineModel<string>();
 
 const {
   name,
   label,
-  type = 'text',
-  placeholder,
+  options,
+  defaultOption = 'Odaberi...',
   disabled = false,
+  error,
 } = defineProps<{
   name: string;
   label?: string;
-  type?: string;
-  placeholder?: string;
+  options: SelectOption[];
+  defaultOption?: string;
   disabled?: boolean;
   error?: string;
 }>();
 </script>
 
 <template>
-  <div class="input-container">
-    <label v-if="label" :for="name" class="input-label">
+  <div class="select-container">
+    <label v-if="label" :for="name" class="select-label">
       {{ label }}
     </label>
 
-    <input
-      v-model="model"
+    <select
       :id="name"
-      :type="type"
-      :placeholder="placeholder"
+      v-model="model"
+      :name="name"
       :disabled="disabled"
-      :class="['input-field', { 'is-invalid': error }]" />
+      :class="{ 'is-invalid': error }"
+      class="select-field">
+      <option value="" disabled>
+        {{ defaultOption }}
+      </option>
+
+      <option
+        v-for="option in options"
+        :key="option.value"
+        :value="option.value">
+        {{ option.label }}
+      </option>
+    </select>
 
     <span v-if="error" class="error-text">
       {{ error }}
@@ -38,7 +55,7 @@ const {
 </template>
 
 <style scoped>
-.input-container {
+.select-container {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -47,7 +64,7 @@ const {
   margin-bottom: 16px;
 }
 
-.input-label {
+.select-label {
   font-family: 'Manrope', sans-serif;
   font-size: 14px;
   line-height: 1.2;
@@ -56,7 +73,7 @@ const {
   display: block;
 }
 
-.input-field {
+.select-field {
   width: 100%;
   height: 56px;
   padding: 0 16px;
@@ -72,30 +89,27 @@ const {
     border-color 0.2s,
     box-shadow 0.2s;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
-.input-field::placeholder {
-  color: #a1a1a1;
-}
-
-.input-field:focus {
+.select-field:focus {
   outline: none;
   border-color: var(--primary);
   box-shadow: 0 0 0 4px rgba(77, 182, 172, 0.1);
 }
 
-.input-field:disabled {
+.select-field:disabled {
   pointer-events: none;
   cursor: not-allowed;
   background-color: rgba(226, 232, 240, 0.5);
   opacity: 0.5;
 }
 
-.input-field.is-invalid {
+.select-field.is-invalid {
   border-color: var(--error);
 }
 
-.input-field.is-invalid:focus {
+.select-field.is-invalid:focus {
   box-shadow: 0 0 0 4px rgba(186, 26, 26, 0.1);
 }
 
